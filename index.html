@@ -56,17 +56,7 @@
   /* disabled を使わないので pointer-events を絶対に残す */
   pointer-events:auto !important;
 }
-#monshin-wrap .mh-btn:hover { border-color:#2980b9 !important; background:#eaf4fb !important; }
-#monshin-wrap .mh-btn.mh-sel { border-color:#2980b9 !important; background:#d6eaf8 !important; font-weight:bold !important; color:#1a5276 !important; }
-/* 未回答時に赤くフラッシュ */
-#monshin-wrap .mh-flash { outline:2px solid #e74c3c !important; border-radius:8px !important; }
-
-#monshin-wrap .mh-grid { display:grid !important; grid-template-columns:1fr 1fr !important; gap:10px !important; }
-@media(max-width:400px){ #monshin-wrap .mh-grid { grid-template-columns:1fr !important; } }
-
-/* チェックボックス */
-#monshin-wrap .mh-checks { display:flex !important; flex-direction:column !important; gap:8px !important; }
-#monshin-wrap .mh-chk {
+#h-chk {
   display:flex !important; align-items:center !important; gap:10px !important;
   padding:11px 14px !important; border:2px solid #d6eaf8 !important;
   border-radius:8px !important; cursor:pointer !important; font-size:14px !important; color:#1c2833 !important;
@@ -239,14 +229,14 @@
         <button class="mh-btn" onclick="MH.sel(this,'症状が始まった時期','1ヶ月以上前から','mh-onset')">1ヶ月以上前から</button>
       </div>
       <div class="mh-err" id="mh-e2">⚠️ いずれかを選んでください</div>
-      <div class="mh-nav"><button class="mh-back" onclick="MH.back(2)">← 戻か</button><button class="mh-next" onclick="MH.next(2)">次へ →</button></div>
+      <div class="mh-nav"><button class="mh-back" onclick="MH.back(2)">← 戻る</button><button class="mh-next" onclick="MH.next(2)">次へ →</button></div>
     </div>
 
     <!-- STEP 3 -->
     <div class="mh-step" id="mh-s3" style="display:none !important">
       <div class="mh-snum">STEP 3 / 11</div>
       <div class="mh-q">症状の辛さはどのくらいですか？</div>
-      <div class="mh-desc">1（ほ盼環にならない）〜 10（とても辛い）で選んでください</div>
+      <div class="mh-desc">1（ほぼ気にならない）〜 10（とても辛い）で選んでください</div>
       <div class="mh-scale" id="mh-scale"></div>
       <div class="mh-scale-hint"><span>1 = 軽い</span><span>10 = とても辛い</span></div>
       <div class="mh-err" id="mh-e3">⚠️ 数字を選んでください</div>
@@ -297,7 +287,7 @@
         <button class="mh-btn" onclick="MH.sel(this,'服薬の有無','不明','mh-medsyn'); MH.show('mh-medsbox',false)">分からない</button>
       </div>
       <div id="mh-medsbox" style="display:none !important">
-        <textarea class="mh-ta" id="mh-medstxt" placeholder="薬の名前（例：アムロジピン、ロキソニンなど）"></textarea>
+        <textarea class="mh-ta" id="mh-medstxt" placeholder="薬の名前（例：アムロc��ピン、ロc��ソニンなど）"></textarea>
       </div>
       <div class="mh-err" id="mh-e6">⚠️ いずれかを選んでください</div>
       <div class="mh-nav"><button class="mh-back" onclick="MH.back(6)">← 戻る</button><button class="mh-next" onclick="MH.next(6)">次へ →</button></div>
@@ -332,26 +322,42 @@
         <div class="mh-grid" id="mh-smkcnt">
           <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','1〜9本','mh-smkcnt')">1〜9本</button>
           <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','10〜19本','mh-smkcnt')">10〜19本</button>
-          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','20本（�y�{�"O؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	�e���fy�+9�l;�"y��{�"I�	̌y�+9.�y."��	�Z\�Z�۝	�H���y�+9.�y."�؝]ۏ���]���]��\��H�Z\�X���/eynm:e���c��x�a9d.8�h��i��a8�o��e��g��b��'��]���]��\��H�ZYܚY�YH�Z\�Z�\�����]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	�e���fy�'�e���	�ynm9�*���	�	�Z\�Z�\��H��ynm9�*���؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	�e���fy�'�e���	�x�'L9nm	�	�Z\�Z�\��H��x�'L9nm؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	�e���fy�'�e���	�L8�'�9nm	�	�Z\�Z�\��H��L8�'�9nm؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	�e���fy�'�e���	̌9nm9.�y."��	�Z\�Z�\��H���9nm9.�y."�؝]ۏ���]����]���]�YH�Z\�Z�]Z]��\��H�Z\�X�����[OH�\�^N��ۙHZ[\ܝ[����]��\��H�Z\�X����a8�i:h ��8�x�o��e��g��b��'��]���]��\��H�ZYܚY�YH�Z\�Z�]����]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	��y�fy�`��'��	�ynm9�*���9bcI�	�Z\�Z�]	�H��ynm9�*���9bcO؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	��y�fy�`��'��	�x�'
-ynm9bcI�	�Z\�Z�]	�H��x�'
-ynm9bcO؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	��y�fy�`��'��	�x�'L9nm9bcI�	�Z\�Z�]	�H��x�'L9nm9bcO؝]ۏ���]ۈ�\��H�ZX���ۘ�X��H�R��[
-\�	��y�fy�`��'��	�L9nm9.�y."�bcI�	�Z\�Z�]	�H��L9nm9.�y."�bcO؝]ۏ���]����]���]��\��H�ZY\���YH�ZYN����;�#�9e���fy⭹��xऺ`n9����e�� z*l��,8࠹aiyb���e��i��c��h8�ex�a�]���]��\��H�Z[�]����]ۈ�\��H�ZX�X�Ȉۘ�X��H�R��X��
-H����9�.���؝]ۏ��]ۈ�\��H�Z[�^�ۘ�X��H�R��^
-
-H���(x�n8���؝]ۏ��]����]����KKH�TH:h�ad�KO��]��\��H�Z\�\�YH�Z\�H��[OH�\�^N��ۙHZ[\ܝ[����]��\��H�Z\۝[H���TH�LO�]���]��\��H�Z\H��'�n�8�b�ad��j��i8�a8�i��fx�b8�i��c��h8�ex�a�]���]��\��H�ZX��X�\ȈYH�ZX[ȏ���]ۈ�\��H�ZX���ۘ�X��H�R�[�\�	�h��o��j��a	�H��h��o��j��a؝]ۏ���]ۈ�\��H�ZX���ۘ�ick="MH.alc(this,'時々飲む（週1〜2回）')">時々飲む（週1〜2回）</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','20本（1箱）','mh-smkcnt')">20本（1箱）</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','21本以上','mh-smkcnt')">21本以上</button>
+        </div>
+        <div class="mh-sub">何年間くらい吸っていましたか？</div>
+        <div class="mh-grid" id="mh-smkyr">
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙期間','5年未満','mh-smkyr')">5年未満</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙期間','5〜10年','mh-smkyr')">5〜10年</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙期間','10〜20年','mh-smkyr')">10〜20年</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙期間','20年以上','mh-smkyr')">20年以上</button>
+        </div>
+      </div>
+      <div id="mh-smkquit" class="mh-subbox" style="display:none !important">
+        <div class="mh-sub">いつ頃やめましたか？</div>
+        <div class="mh-grid" id="mh-smkqt">
+          <button class="mh-btn" onclick="MH.sel(this,'禁煙時期','1年未満前','mh-smkqt')">1年未満前</button>
+          <button class="mh-btn" onclick="MH.sel(this,'禁煙時期','1〜5年前','mh-smkqt')">1〜5年前</button>
+          <button class="mh-btn" onclick="MH.sel(this,'禁煙時期','5〜10年前','mh-smkqt')">5〜10年前</button>
+          <button class="mh-btn" onclick="MH.sel(this,'禁煙時期','10年以上前','mh-smkqt')">10年以上前</button>
+        </div>
+      </div>
+      <div class="mh-err" id="mh-e8">⚠️ 喫煙状況を選択し、詳細も入力してください</div>
+      <div class="mh-nav"><button class="mh-back" onclick="MH.back(8)">← 戻る</button><button class="mh-next" onclick="MH.next(8)">次へ →</button></div>
+    </div>
+
+    <!-- STEP 9 飲酒 -->
+    <div class="mh-step" id="mh-s9" style="display:none !important">
+      <div class="mh-snum">STEP 9 / 11</div>
+      <div class="mh-q">🍺 お酒について教えてください</div>
+      <div class="mh-choices" id="mh-alc">
+        <button class="mh-btn" onclick="MH.alc(this,'飲まない')">飲まない</button>
+        <button class="mh-btn" onclick="MH.alc(this,'時々飲む（週1〜2回）')">時々飲む（週1〜2回）</button>
         <button class="mh-btn" onclick="MH.alc(this,'よく飲む（週3〜5回）')">よく飲む（週3〜5回）</button>
         <button class="mh-btn" onclick="MH.alc(this,'ほぼ毎日飲む')">ほぼ毎日飲む</button>
       </div>
       <div id="mh-alcdet" class="mh-subbox" style="display:none !important">
-        <div class="mh-sub">1回あたりどのくらい飲〿ますか？</div>
+        <div class="mh-sub">1回あたりどのくらい飲がぽぇすか？</div>
         <div class="mh-choices" id="mh-alcamt">
           <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','少量（ビール中瓶1本・日本酒1合未満）','mh-alcamt')">少量（ビール中瓶1本・日本酒1合未満）</button>
           <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','普通（ビール中瓶2本・日本酒1〜2合）','mh-alcamt')">普通（ビール中瓶2本・日本酒1〜2合）</button>
@@ -422,7 +428,7 @@ H���(x�n8���؝]ۏ��]����]����
       <strong>📋 受付でのご案内</strong>
       ① 上の「受付番号」を受付スタッフにお伝えください<br>
       ② お名前の確認後、問診内容を電子カルテに取り込みます<br>
-      ③ そのみぽお待ちいただくか、受付でご案内します
+      ③ そのままお待ちいただくか、受付でご案内します
     </div>
     <div id="mh-sstatus" style="text-align:center;font-size:13px;color:#888;margin-bottom:14px;min-height:20px"></div>
     <button class="mh-csv" onclick="MH.csv()">📥 CSVダウンロード（受付スタッフ用）</button>
@@ -592,7 +598,7 @@ MH._save = function(n) {
     a['既往歴'] = v.length ? v.join('・') : '特になし';
   }
   if (n===6) { var t=document.getElementById('mh-medstxt'); a['薬剤名'] = t ? (t.value.trim()||'なし') : 'なし'; }
-  if (n===7) { var t=document.getElementByRd('mh-algtxt');  a['アレルギー内容'] = t ? (t.value.trim()||'なし') : 'なし'; }
+  if (n===7) { var t=document.getElementById('mh-algtxt');  a['アレルギー内容'] = t ? (t.value.trim()||'なし') : 'なし'; }
   if (n===11){ var t=document.getElementById('mh-notes');   a['自由記入'] = t ? (t.value.trim()||'なし') : 'なし'; }
 };
 
@@ -705,7 +711,7 @@ MH._sheets = function() {
 /* ---------- CSV ---------- */
 MH.csv = function() {
   var headers = ['受付番号','問診日時','主な症状','症状が始まった時期','症状の辛さ(1-10)',
-    '現在の体温','既往歴','服薬の有無','薬剤名','アレルギー','アレルギー内容',
+    '現在の体温','既往歴','服薬の有無','薬剤名','アレルのー','アレルのー内容',
     '喫煙','喫煙本数（1日）','喫煙期間','禁煙時期','飲酒','飲酒量（1回）','年齢','性別','自由記入'];
   var row = headers.map(function(h) {
     var v = String(MH._ans[h] !== undefined ? MH._ans[h] : '').replace(/"/g,'""');
