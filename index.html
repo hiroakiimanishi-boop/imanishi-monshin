@@ -56,7 +56,17 @@
   /* disabled を使わないので pointer-events を絶対に残す */
   pointer-events:auto !important;
 }
-#h-chk {
+#monshin-wrap .mh-btn:hover { border-color:#2980b9 !important; background:#eaf4fb !important; }
+#monshin-wrap .mh-btn.mh-sel { border-color:#2980b9 !important; background:#d6eaf8 !important; font-weight:bold !important; color:#1a5276 !important; }
+/* 未回答時に赤くフラッシュ */
+#monshin-wrap .mh-flash { outline:2px solid #e74c3c !important; border-radius:8px !important; }
+
+#monshin-wrap .mh-grid { display:grid !important; grid-template-columns:1fr 1fr !important; gap:10px !important; }
+@media(max-width:400px){ #monshin-wrap .mh-grid { grid-template-columns:1fr !important; } }
+
+/* チェックボックス */
+#monshin-wrap .mh-checks { display:flex !important; flex-direction:column !important; gap:8px !important; }
+#monshin-wrap .mh-chk {
   display:flex !important; align-items:center !important; gap:10px !important;
   padding:11px 14px !important; border:2px solid #d6eaf8 !important;
   border-radius:8px !important; cursor:pointer !important; font-size:14px !important; color:#1c2833 !important;
@@ -199,12 +209,12 @@
     <!-- STEP 1 -->
     <div class="mh-step mh-on" id="mh-s1" style="display:block !important">
       <div class="mh-snum">STEP 1 / 11</div>
-      <div class="mh-q">今日はどのような症状でお越しですか？</div>
+      <div class="mh-q">今日かどのような症状でお越しですか？</div>
       <div class="mh-desc">当てはまるものをすべて選んでください</div>
       <div class="mh-checks" id="mh-symp">
         <label class="mh-chk"><input type="checkbox" value="発熱・微熱"> 🌡️ 発熱・微熱</label>
         <label class="mh-chk"><input type="checkbox" value="せき・痰"> 😷 せき・痰</label>
-        <label class="mh-chk"><input type="checkbox" value="鼻水・鼻づまり"> 🤧 鼻水・鼻づまり</label>
+        <label class="mh-chk"><input type="checkbox" value="鼻水・鼻づまり"> 🤧 鼻水ヹ鼻づまり</label>
         <label class="mh-chk"><input type="checkbox" value="頭痛・めまい"> 🤕 頭痛・めまい</label>
         <label class="mh-chk"><input type="checkbox" value="腹痛・下痢・嘔吐"> 腹痛・下痢・嘔吐</label>
         <label class="mh-chk"><input type="checkbox" value="倦怠感・だるさ"> 😔 倦怠感・だるさ</label>
@@ -262,7 +272,7 @@
     <!-- STEP 5 -->
     <div class="mh-step" id="mh-s5" style="display:none !important">
       <div class="mh-snum">STEP 5 / 11</div>
-      <div class="mh-q">これまでにかかったことのある病気はありますか？</div>
+      <div class="mh-q">これまでカかったことのある病気気はありますか？</div>
       <div class="mh-desc">当てはまるものをすべて選んでください（任意）</div>
       <div class="mh-checks" id="mh-hist">
         <label class="mh-chk"><input type="checkbox" value="高血圧"> 高血圧</label>
@@ -287,7 +297,7 @@
         <button class="mh-btn" onclick="MH.sel(this,'服薬の有無','不明','mh-medsyn'); MH.show('mh-medsbox',false)">分からない</button>
       </div>
       <div id="mh-medsbox" style="display:none !important">
-        <textarea class="mh-ta" id="mh-medstxt" placeholder="薬の名前（例：アムロc��ピン、ロc��ソニンなど）"></textarea>
+        <textarea class="mh-ta" id="mh-medstxt" placeholder="薬の名前（例：アムロジピン、ロキソニンなど）"></textarea>
       </div>
       <div class="mh-err" id="mh-e6">⚠️ いずれかを選んでください</div>
       <div class="mh-nav"><button class="mh-back" onclick="MH.back(6)">← 戻る</button><button class="mh-next" onclick="MH.next(6)">次へ →</button></div>
@@ -357,7 +367,7 @@
         <button class="mh-btn" onclick="MH.alc(this,'ほぼ毎日飲む')">ほぼ毎日飲む</button>
       </div>
       <div id="mh-alcdet" class="mh-subbox" style="display:none !important">
-        <div class="mh-sub">1回あたりどのくらい飲がぽぇすか？</div>
+        <div class="mh-sub">1回あたりどのくらい飲みますか？</div>
         <div class="mh-choices" id="mh-alcamt">
           <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','少量（ビール中瓶1本・日本酒1合未満）','mh-alcamt')">少量（ビール中瓶1本・日本酒1合未満）</button>
           <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','普通（ビール中瓶2本・日本酒1〜2合）','mh-alcamt')">普通（ビール中瓶2本・日本酒1〜2合）</button>
@@ -395,7 +405,7 @@
     <!-- STEP 11 自由記入 -->
     <div class="mh-step" id="mh-s11" style="display:none !important">
       <div class="mh-snum">STEP 11 / 11</div>
-      <div class="mh-q">医師に伝えておきたいことはありますか？</div>
+      <div class="mh-q">医師に伝えておきたいことはありますお���</div>
       <div class="mh-desc">症状の詳細・前回の受診・心配なことなど。なければ空欄のまま次へ進んでください。</div>
       <textarea class="mh-ta" id="mh-notes" placeholder="自由記入欄（任意）"></textarea>
       <div class="mh-nav"><button class="mh-back" onclick="MH.back(11)">← 戻る</button><button class="mh-next" onclick="MH.confirm()">確認画面へ →</button></div>
@@ -444,7 +454,7 @@
    MH 名前空間 — WordPress 上でも確実に動作する設計
    ・disabled 属性は一切使用しない（WordPressテーマが pointer-events:none を付加するため）
    ・クリック時にバリデーションして未回答なら赤いエラーメッセージを表示
-   ・チェックボックスは change イベントで制御（ラボン onclick での二重トグル回避）
+   ・チェックボックスは change イベントで制御（ラホン onclick での二重トグル回避）
    =================================================================== */
 var MH = {};
 
@@ -454,7 +464,7 @@ MH._ans   = {};
 MH._id    = '';
 
 /* ▼▼▼ Google Apps Script の URL をここに貼り付けてください ▼▼▼ */
-MH._url = 'ここにURLを貼り付け';
+MH._url = 'https://script.google.com/macros/s/AKfycbwP57Xcfq4V7lS2yEU1qCW7oQ-KpmgobDFVDunn0Su617s-hCuuY4Jf18nEIDcHquDU/exec';
 /* ▲▲▲ 例: 'https://script.google.com/macros/s/AKfycb.../exec' ▲▲▲ */
 
 /* ---------- 初期化 ---------- */
@@ -511,7 +521,7 @@ MH._updateProg = function() {
   if (pp) pp.textContent = pct + '%';
 };
 
-/* ---------- 表示切替（setAttribute で style 属性に直接 !important を書き込む） ----------
+/* ---------- 表示切替（setAttribute で style 属性に直接 !important を書き込　） ----------
    ※ style.setProperty('display','block','important') は WordPress 環境で
       信頼性が低いため、setAttribute で style 属性ごと上書きする方式に変更。
    ------------------------------------------------------------ */
@@ -704,14 +714,14 @@ MH._sheets = function() {
   if (!MH._url || MH._url === 'ここにURLを貼り付け') return;
   if (st) { st.textContent='📤 Googleスプレッドシートに送信中...'; st.style.color='#888'; }
   fetch(MH._url, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(MH._ans) })
-    .then(function(){ if(st){st.textContent='✅ Googleスプレッドシートに記録されま���た';st.style.color='#27ae60';} })
+    .then(function(){ if(st){st.textContent='✅ Googleスプレッドシートに記録されました';st.style.color='#27ae60';} })
     .catch(function(){ if(st){st.textContent='⚠️ 送信に失敗しました（CSVをご利用ください）';st.style.color='#e74c3c';} });
 };
 
 /* ---------- CSV ---------- */
 MH.csv = function() {
   var headers = ['受付番号','問診日時','主な症状','症状が始まった時期','症状の辛さ(1-10)',
-    '現在の体温','既往歴','服薬の有無','薬剤名','アレルのー','アレルのー内容',
+    '現在の体温','既往歴','服薬の有無','薬剤名','アレルギー','アレルギー内容',
     '喫煙','喫煙本数（1日）','喫煙期間','禁煙時期','飲酒','飲酒量（1回）','年齢','性別','自由記入'];
   var row = headers.map(function(h) {
     var v = String(MH._ans[h] !== undefined ? MH._ans[h] : '').replace(/"/g,'""');
@@ -740,4 +750,3 @@ if (document.readyState === 'loading') {
 </script>
 </body>
 </html>
-
