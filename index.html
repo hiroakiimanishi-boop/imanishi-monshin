@@ -7,7 +7,7 @@
 <style>
 /* ===== WordPress干渉対策: #monshin-wrap 配下のみに限定 + !important ===== */
 #monshin-wrap, #monshin-wrap * { box-sizing: border-box !important; }
-#monshin-wrap {
+#monshin-wrap 
   font-family: 'Hiragino Kaku Gothic ProN','Meiryo',sans-serif !important;
   background: #fff !important; border-radius: 14px !important;
   box-shadow: 0 4px 24px rgba(0,0,0,.1) !important;
@@ -209,12 +209,12 @@
     <!-- STEP 1 -->
     <div class="mh-step mh-on" id="mh-s1" style="display:block !important">
       <div class="mh-snum">STEP 1 / 11</div>
-      <div class="mh-q">今日かどのような症状でお越しですか？</div>
+      <div class="mh-q">今日はどのような症状でお越しですか？</div>
       <div class="mh-desc">当てはまるものをすべて選んでください</div>
       <div class="mh-checks" id="mh-symp">
         <label class="mh-chk"><input type="checkbox" value="発熱・微熱"> 🌡️ 発熱・微熱</label>
         <label class="mh-chk"><input type="checkbox" value="せき・痰"> 😷 せき・痰</label>
-        <label class="mh-chk"><input type="checkbox" value="鼻水・鼻づまり"> 🤧 鼻水ヹ鼻づまり</label>
+        <label class="mh-chk"><input type="checkbox" value="鼻水・鼻づまり"> 🤧 鼻水・鼻づまり</label>
         <label class="mh-chk"><input type="checkbox" value="頭痛・めまい"> 🤕 頭痛・めまい</label>
         <label class="mh-chk"><input type="checkbox" value="腹痛・下痢・嘔吐"> 腹痛・下痢・嘔吐</label>
         <label class="mh-chk"><input type="checkbox" value="倦怠感・だるさ"> 😔 倦怠感・だるさ</label>
@@ -272,7 +272,7 @@
     <!-- STEP 5 -->
     <div class="mh-step" id="mh-s5" style="display:none !important">
       <div class="mh-snum">STEP 5 / 11</div>
-      <div class="mh-q">これまでカかったことのある病気気はありますか？</div>
+      <div class="mh-q">これまでにかかったことのある病気はありますか？</div>
       <div class="mh-desc">当てはまるものをすべて選んでください（任意）</div>
       <div class="mh-checks" id="mh-hist">
         <label class="mh-chk"><input type="checkbox" value="高血圧"> 高血圧</label>
@@ -405,7 +405,7 @@
     <!-- STEP 11 自由記入 -->
     <div class="mh-step" id="mh-s11" style="display:none !important">
       <div class="mh-snum">STEP 11 / 11</div>
-      <div class="mh-q">医師に伝えておきたいことはありますお���</div>
+      <div class="mh-q">医師に伝えておきたいことはありますか？</div>
       <div class="mh-desc">症状の詳細・前回の受診・心配なことなど。なければ空欄のまま次へ進んでください。</div>
       <textarea class="mh-ta" id="mh-notes" placeholder="自由記入欄（任意）"></textarea>
       <div class="mh-nav"><button class="mh-back" onclick="MH.back(11)">← 戻る</button><button class="mh-next" onclick="MH.confirm()">確認画面へ →</button></div>
