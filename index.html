@@ -15,7 +15,6 @@
   padding: 36px 32px !important; margin: 20px auto !important;
 }
 @media(max-width:480px){ #monshin-wrap { padding: 24px 16px !important; } }
-
 #monshin-wrap .mh-hd { text-align:center !important; margin-bottom:26px !important; }
 #monshin-wrap .mh-hd h2 {
   font-size:20px !important; color:#1a5276 !important; font-weight:bold !important;
@@ -330,10 +329,10 @@
       <div id="mh-smkdet" class="mh-subbox" style="display:none !important">
         <div class="mh-sub">1日だいたい何本くらい吸っていましたか？</div>
         <div class="mh-grid" id="mh-smkcnt">
-          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','1〜9本','mh-smkcnt')">1〜9本</button>
-          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','10〜19本','mh-smkcnt')">10〜19本</button>
-          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','20本（1箱）','mh-smkcnt')">20本（1箱）</button>
-          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数（1日）','21本以上','mh-smkcnt')">21本以上</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数(1日)','1〜9本','mh-smkcnt')">1〜9本</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数(1日)','10〜19本','mh-smkcnt')">10〜19本</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数(1日)','20本（1箱）','mh-smkcnt')">20本（1箱）</button>
+          <button class="mh-btn" onclick="MH.sel(this,'喫煙本数(1日)','21本以上','mh-smkcnt')">21本以上</button>
         </div>
         <div class="mh-sub">何年間くらい吸っていましたか？</div>
         <div class="mh-grid" id="mh-smkyr">
@@ -369,9 +368,9 @@
       <div id="mh-alcdet" class="mh-subbox" style="display:none !important">
         <div class="mh-sub">1回あたりどのくらい飲みますか？</div>
         <div class="mh-choices" id="mh-alcamt">
-          <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','少量（ビール中瓶1本・日本酒1合未満）','mh-alcamt')">少量（ビール中瓶1本・日本酒1合未満）</button>
-          <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','普通（ビール中瓶2本・日本酒1〜2合）','mh-alcamt')">普通（ビール中瓶2本・日本酒1〜2合）</button>
-          <button class="mh-btn" onclick="MH.sel(this,'飲酒量（1回）','多め（ビール中瓶3本以上・日本酒3合以上）','mh-alcamt')">多め（ビール中瓶3本以上・日本酒3合以上）</button>
+          <button class="mh-btn" onclick="MH.sel(this,'飲酒量(1回)','少量（ビール中瓶1本・日本酒1合未満）','mh-alcamt')">少量（ビール中瓶1本・日本酒1合未満）</button>
+          <button class="mh-btn" onclick="MH.sel(this,'飲酒量(1回)','普通（ビール中瓶2本・日本酒1〜2合）','mh-alcamt')">普通（ビール中瓶2本・日本酒1〜2合）</button>
+          <button class="mh-btn" onclick="MH.sel(this,'飲酒量(1回)','多め（ビール中瓶3本以上・日本酒3合以上）','mh-alcamt')">多め（ビール中瓶3本以上・日本酒3合以上）</button>
         </div>
       </div>
       <div class="mh-err" id="mh-e9">⚠️ いずれかを選んでください（飲む場合は量も選んでください）</div>
@@ -572,14 +571,14 @@ MH._ready = function(n) {
   if (n===8) {
     if (!a['喫煙']) return false;
     if (a['喫煙'] === '吸わない（吸ったことがない）') return true;
-    if (!a['喫煙本数（1日）'] || !a['喫煙期間']) return false;
+    if (!a['喫煙本数(1日)'] || !a['喫煙期間']) return false;
     if (a['喫煙'] === '以前吸っていたが現在はやめた' && !a['禁煙時期']) return false;
     return true;
   }
   if (n===9) {
     if (!a['飲酒']) return false;
     if (a['飲酒'] === '飲まない') return true;
-    return !!a['飲酒量（1回）'];
+    return !!a['飲酒量(1回)'];
   }
   if (n===10) return !!(a['年齢'] && a['性別']);
   if (n===11) return true;
@@ -636,7 +635,7 @@ MH.smoke = function(btn, val) {
   } else {
     MH.show('mh-smkdet', false);
     MH.show('mh-smkquit', false);
-    MH._ans['喫煙本数（1日）']='—'; MH._ans['喫煙期間']='—'; MH._ans['禁煙時期']='—';
+    MH._ans['喫煙本数(1日)']='—'; MH._ans['喫煙期間']='—'; MH._ans['禁煙時期']='—';
   }
 };
 
@@ -646,7 +645,7 @@ MH.alc = function(btn, val) {
   btn.classList.add('mh-sel');
   MH._ans['飲酒'] = val;
   MH.show('mh-alcdet', val !== '飲まない');
-  if (val === '飲まない') MH._ans['飲酒量（1回）'] = '—';
+  if (val === '飲まない') MH._ans['飲酒量(1回)'] = '—';
 };
 
 /* ---------- 年齢・性別 ---------- */
@@ -668,8 +667,8 @@ MH.confirm = function() {
 
   var keys = ['主な症状','症状が始まった時期','症状の辛さ(1-10)','現在の体温',
     '既往歴','服薬の有無','薬剤名','アレルギー','アレルギー内容',
-    '喫煙','喫煙本数（1日）','喫煙期間','禁煙時期',
-    '飲酒','飲酒量（1回）','年齢','性別','自由記入','問診日時'];
+    '喫煙','喫煙本数(1日)','喫煙期間','禁煙時期',
+    '飲酒','飲酒量(1回)','年齢','性別','自由記入','問診日時'];
   var tbl = document.getElementById('mh-ctbl');
   if (tbl) {
     tbl.innerHTML = '';
@@ -722,7 +721,7 @@ MH._sheets = function() {
 MH.csv = function() {
   var headers = ['受付番号','問診日時','主な症状','症状が始まった時期','症状の辛さ(1-10)',
     '現在の体温','既往歴','服薬の有無','薬剤名','アレルギー','アレルギー内容',
-    '喫煙','喫煙本数（1日）','喫煙期間','禁煙時期','飲酒','飲酒量（1回）','年齢','性別','自由記入'];
+    '喫煙','喫煙本数(1日)','喫煙期間','禁煙時期','飲酒','飲酒量(1回)','年齢','性別','自由記入'];
   var row = headers.map(function(h) {
     var v = String(MH._ans[h] !== undefined ? MH._ans[h] : '').replace(/"/g,'""');
     return (v.indexOf(',')!==-1||v.indexOf('\n')!==-1||v.indexOf('"')!==-1) ? '"'+v+'"' : v;
